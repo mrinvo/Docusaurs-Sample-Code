@@ -1,0 +1,9 @@
+<!-- src/Reuesables/HostedIntro.mdx -->
+import urls from '@site/src/URLs/urls.json';
+export const HostedIntro = ({ title, content }) => (
+
+  <p>Hosted Payment Page integration type is suitable for merchants with PCI SAQ A or merchants does not have any PCI levels. To customize the UI of the hosted payment page, check this <a href="({urls.themes})">article</a>, and to know more about the Hosted Payment Page PCI DSS merchant requirements, please check this <a href="()">article</a>.</p> 
+
+);
+
+<HostedIntro title="HostedIntro" content="This is a reusable introduction for all apis!" />

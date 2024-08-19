@@ -1,0 +1,8 @@
+{
+  "label": "Step 3 - Initiating the payment",
+  "position": 3,
+  "link": {
+    "type": "doc",
+    "id": "HostedStepThree"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "Initiating All Payment Methods",
+  "position": 1,
+  "link": {
+    "type": "doc",
+    "id": "InitiatingAllPayment"
+  }
+}

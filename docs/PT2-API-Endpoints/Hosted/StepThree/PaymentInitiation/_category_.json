@@ -1,0 +1,8 @@
+{
+  "label": "Initiating the payment",
+  "position": 2,
+  "link": {
+    "type": "doc",
+    "id": "InitiatingPayment"
+  }
+}

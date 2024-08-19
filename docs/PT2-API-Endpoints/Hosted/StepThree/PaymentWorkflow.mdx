@@ -1,0 +1,23 @@
+---
+sidebar_position: 1
+---
+import DocCardList from '@theme/DocCardList';
+import { APIsIntro } from '@site/src/Reusables/APIsIntro.mdx';
+import { HostedIntro } from '@site/src/Reusables/HostedIntro.mdx';
+import urls from '@site/src/URLs/urls.json';
+
+
+# Payment Workflow
+
+<HostedIntro title="" content="" />
+
+
+In this article, we will wake you through the payment workflow for PayTabs Hosted Payment Page. 
+
+1. The Hosted Payment page uses a Transaction API request which will return a response with a payment page link.
+
+2. The merchant should navigate/redirect the customers to this previous payment page link, which he will have its URL in the response; in order to complete the payment.
+
+3. Once the payment is completed, PayTabs will redirect the customer back to the merchant’s website, to the return URL that the merchant specified in the API request, and the payment results will be posted to that URL.
+
+![Payment Workflow](@site/src/images/hostedpworkflow.png)

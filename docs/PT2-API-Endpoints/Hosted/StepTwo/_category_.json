@@ -1,0 +1,8 @@
+{
+  "label": "Step - 2 Configure the integration method",
+  "position": 2,
+  "link": {
+    "type": "doc",
+    "id": "HostedStepTwo"
+  }
+}

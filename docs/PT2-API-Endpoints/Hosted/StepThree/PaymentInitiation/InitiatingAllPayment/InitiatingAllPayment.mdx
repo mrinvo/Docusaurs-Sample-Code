@@ -1,0 +1,404 @@
+---
+sidebar_position: 1
+---
+
+import DocCardList from "@theme/DocCardList";
+import { APIsIntro } from "@site/src/Reusables/APIsIntro.mdx";
+import { HostedIntro } from "@site/src/Reusables/HostedIntro.mdx";
+import urls from "@site/src/URLs/urls.json";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+import Dropdown from "@site/src/components/Dropdown";
+import Highlight from "@site/src/components/Highlight";
+
+# Initiating All Payments
+
+<!-- src/Reuesables/HostedIntro.mdx -->
+
+<HostedIntro title="" content="" />
+
+<!-- video -->
+
+<iframe
+  width="100%"
+  height="500"
+  src="https://www.youtube.com/embed/0uvdgweDx1U"
+  title="INTEGRATIONS: Step 3 - Hosted Payment Page APIs | Initiating the payment (Required Parameters)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+<br />
+<br />
+
+In this article, we will walk you through how to initiate a payment request via this integration type. You will be introduced to the required parameters that need to be passed to initiate the request, along with all the possible optional parameters as well. We highly recommend that you and your team check our [Hosted Payment Page | Payment Workflow](../../PaymentWorkflow.mdx) solution article first to understand the business/logic this integration type relay on.
+
+<br />
+
+## The Endpoint and Related Postman Collection
+
+In this tutorial, we will rely on the PayTabs Hosted Payment Page API Endpoint, mentioned on PayTabs API endpoints postman collection, which you can access from [here]({urls.collection}). The endpoint will need to be accessed with a POST request on the below-mentioned URL
+
+    | **<span style={{color: 'var(--ifm-color-request-post)'}}>POST</span>** | \{\{domain\}\}payment/request |
+    |----------|-------------------------------|
+
+        :::caution
+    <br/>
+    Please note that not using the proper endpoint URI \{\{domain\}\} will lead to authentication issues within your responses. To find the your proper domain you can read our [What Is My (Region)/(endpoint URL)? solution article]({urls.region}).
+
+    | **<span style={{color: 'var(--ifm-color-request-post)'}}>POST</span>** | \{\{domain\}\}payment/request |
+    |----------|-------------------------------|
+    <Tabs>
+    <TabItem value="UAE" label="UAE" default>
+        ```
+        https://secure.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https:<nolink/>//secure.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="KSA" label="KSA">
+        ```
+        https://secure.paytabs.sa/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure.paytabs.sa/</b>payment/request
+    </TabItem>
+        <TabItem value="Egypt" label="Egypt" >
+        ```
+        https://secure-egypt.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure-egypt.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="Oman" label="Oman" >
+        ```
+        https://secure-oman.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure-oman.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="Jordan" label="Jordan" >
+        ```
+        https://secure-jordan.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure-jordan.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="Global" label="Global" >
+    ```
+    https://secure-global.paytabs.com/{{endpoint_uri}}
+    ```
+    For example: <b>https<nolink/>://secure-global.paytabs.com/</b>payment/request
+    </TabItem>
+    </Tabs>
+
+:::
+
+<br />{" "}
+
+## Request Parameters
+
+To initiate a payment request using this integration type, there are minimum required parameters that need to be passed with valid information. The specification of these required parameters is clarified below:
+
+<Tabs>
+    <TabItem value="RequiredParameters" label="The Minimum Required Parameters" default>
+
+    <!-- Required Parameters -->
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Data Type</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>Required</th>
+            </tr>
+
+            <!-- Profile ID  -->
+
+            <tr>
+                <td rowspan="3"><CodeBlock>profile_id</CodeBlock></td>
+                <td style={{textAlign: 'center'}}><Highlight text="INT" color="var(--ifm-color-primary-darkest)"/></td>
+                <td><center>-</center></td>
+                <td>Accept only valid profile number</td>
+                <td style={{color: 'rgb(173 14 14)', textAlign: 'center'}} >&#x2714;</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span>The merchant Profile ID you can get from your PayTavs dashboard. For more information please check our How to get your account information from PT2 Dashboard? solution article. To know more about this parameter please click here.</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    ``` json
+                    {
+                        "profile_id ": "88888"
+                    }
+                    ````
+                </td>
+            </tr>
+
+            <!-- Tran type  -->
+
+            <tr>
+                <td rowspan="3"><CodeBlock>tran_type</CodeBlock></td>
+                <td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
+                <td colspan="2"><p>Valid string from this enum list:</p> `sale` `auth` `void` `release` `capture` `refund` `register`</td>
+                <td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span>The merchant Profile ID you can get from your PayTavs dashboard. For more information please check our How to get your account information from PT2 Dashboard? solution article. To know more about this parameter please click here.</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    ``` json
+                    {
+                        "profile_id ": "88888"
+                    }
+                    ````
+                </td>
+            </tr>
+
+
+            <tr>
+                <td rowspan="3"><CodeBlock>return</CodeBlock></td>
+                <td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
+                <td><center>-</center></td>
+                <td>255 Characters (Valid URL)</td>
+                <td style={{color: 'rgb(173 14 14)', textAlign: 'center'}} >❌</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span>The return URL is the URL that PayTabs will redirect the customer to after he finishes the payment process (whether it's authenticated or not). It will redirect the customer with a POST response that is sent with the client/cardholder redirection through his browser containing the basic transaction information once the payment process ends (whether the customer cancels, paid, or failed to pay). It depends on the customer's actions, which means if the customer closes the browser right after the payment without waiting to be redirected back to your system, you will not receive this response. What is the Return URL vs the Callback URL? To know more about this parameter please click here.</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    ``` json
+                    {
+                        "return": "https://example.com/order/10001"
+                    }
+                    ````
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="3"><CodeBlock>callback</CodeBlock></td>
+                <td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
+                <td><center>-</center></td>
+                <td>255 Characters (Valid URL)</td>
+                <td style={{color: 'rgb(173 14 14)', textAlign: 'center'}} >❌</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span>The callback response is a server-to-server POST response that is sent (to a pre-defined HTTPS URL) with the full detailed transaction information once the payment process has ended (whether the customer cancels, paid, or failed to pay). It does not depend on the customer's actions; the response will be sent anyway. </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                        ``` json
+                        {
+                            "callback": "https://www.example.com/notifications"
+                        }
+                        ````
+                </td>
+            </tr>
+</table>
+
+
+        <!-- Request/Response Paylod with Required Paramteters Paramters -->
+        <Tabs>
+            <TabItem value="RequestPayload" label="Sample Request Payload" default>
+                ```json
+                {
+                    "profile_id": "987###",
+                    "tran_type": "sale",
+                    "tran_class": "ecom",
+                    "cart_id": "CART#1001",
+                    "cart_currency": "AED",
+                    "cart_amount": 500,
+                    "cart_description": "Description of the items/services",
+                }
+                ```
+            </TabItem>
+
+            <TabItem value="ResponsePayload" label="Sample Response Payload">
+                ```json
+                {
+                "tran_ref": "TST22********159",
+                "tran_type": "Sale",
+                "cart_id": "CART#1001",
+                "cart_description": "Description of the items/services",
+                "cart_currency": "AED",
+                "cart_amount": "500.00",
+                "return": "none",
+                "redirect_url": "https://secure.paytabs.com/payment/page/599458B182E5B6B********************B4817FD44318539688688",
+                "serviceId": 2,
+                "profileId": 9*****4,
+                "merchantId": 1*****7,
+                "trace": "PMN****4.63****A8.00****C4"
+                }
+                ```
+            </TabItem>
+        </Tabs>
+    </TabItem>
+
+    <TabItem value="OptionalParameters" label="The Available Optional Parameters">
+
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Data Type</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>Required</th>
+            </tr>
+
+            <!-- Profile ID  -->
+
+
+
+            <!-- Tran type  -->
+
+
+            <tr>
+                <td rowspan="3"><CodeBlock>return</CodeBlock></td>
+                <td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
+                <td><center>-</center></td>
+                <td>255 Characters (Valid URL)</td>
+                <td style={{color: 'rgb(173 14 14)', textAlign: 'center'}} >❌</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span>The return URL is the URL that PayTabs will redirect the customer to after he finishes the payment process (whether it's authenticated or not). It will redirect the customer with a POST response that is sent with the client/cardholder redirection through his browser containing the basic transaction information once the payment process ends (whether the customer cancels, paid, or failed to pay). It depends on the customer's actions, which means if the customer closes the browser right after the payment without waiting to be redirected back to your system, you will not receive this response. What is the Return URL vs the Callback URL? To know more about this parameter please click here.</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    ``` json
+                    {
+                        "return": "https://example.com/order/10001"
+                    }
+                    ````
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="3"><CodeBlock>callback</CodeBlock></td>
+                <td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
+                <td><center>-</center></td>
+                <td>255 Characters (Valid URL)</td>
+                <td style={{color: 'rgb(173 14 14)', textAlign: 'center'}} >❌</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span>The callback response is a server-to-server POST response that is sent (to a pre-defined HTTPS URL) with the full detailed transaction information once the payment process has ended (whether the customer cancels, paid, or failed to pay). It does not depend on the customer's actions; the response will be sent anyway. </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                        ``` json
+                        {
+                            "callback": "https://www.example.com/notifications"
+                        }
+                        ````
+                </td>
+            </tr>
+</table>
+
+        <!-- Request/Response Paylod with Optional Paramters -->
+        <Tabs>
+            <TabItem value="RequestPayload" label="Sample Request Payload" default>
+                ```json
+{
+    "profile_id": **Your profile ID**,
+    "tran_type": "sale",
+    "tran_class": "ecom",
+    "cart_description": "Description of the items/services",
+    "cart_id": "Unique order reference00",
+    "cart_amount": 25000.2,
+    "cart_currency": "USD",
+    "paypage_lang": "en",
+    "return":"** Valid Return URL **",
+    "callback":"** Valid callback URL **",
+    "customer_details": {
+        "name": "FirstName LastName",
+        "email": "email1@domain.com",
+        "phone": "0522222222",
+        "street1": "address street",
+        "city": "cc",
+        "state": "C",
+        "country": "AE",
+        "zip": "12345"
+    },
+    "shipping_details": {
+        "name": "FirstName LastName",
+        "email": "email1@domain.com",
+        "phone": "971555555555",
+        "street1": "street2",
+        "city": "dubai",
+        "state": "dubai",
+        "country": "AE",
+        "zip": "54321"
+    },
+    "user_defined": {
+        "test": "UDF1 Test",
+        "test2": "UDF2 Test",
+        "udf3": "UDF3 Test",
+        "udf4": "UDF4 Test",
+        "udf5": "UDF5 Test",
+        "udf6": "UDF6 Test",
+        "udf7": "UDF7 Test",
+        "udf8": "UDF8 Test",
+        "udf9": "UDF9 Test"
+    },
+    "card_discounts":[
+  {
+  "discount_cards" : "41111,520000",
+  "discount_amount" : "30.00",
+    "discount_percent" : "25",
+  "discount_title" : "30.00 SAR and 25% discount on cards starts with 41111, 520000",
+  }
+],
+    "config_id": 2188,
+    "card_filter": "411111",
+    "card_filter_title": "Only accept cards start with 41111",
+    "tokenise": 2,
+    "show_save_card": true,
+    "hide_shipping":true,
+    "donation_mode":true,
+    "cart_min":5,
+    "cart_max":10,
+     "framed": true,
+    "framed_return_top": true,
+    "framed_return_parent": true
+}
+                ```
+            </TabItem>
+
+            <TabItem value="ResponsePayload" label="Sample Response Payload">
+                ```json
+                {
+                "tran_ref": "TST22********159",
+                "tran_type": "Sale",
+                "cart_id": "CART#1001",
+                "cart_description": "Description of the items/services",
+                "cart_currency": "AED",
+                "cart_amount": "500.00",
+                "return": "none",
+                "redirect_url": "https://secure.paytabs.com/payment/page/599458B182E5B6B********************B4817FD44318539688688",
+                "serviceId": 2,
+                "profileId": 9*****4,
+                "merchantId": 1*****7,
+                "trace": "PMN****4.63****A8.00****C4"
+                }
+                ```
+            </TabItem>
+        </Tabs>
+    </TabItem>
+
+</Tabs>
+
+
+## The Payment Page Experience 
+
+As mentioned in [Hosted Payment Page | Payment Workflow]({urls.hostedpworkflow}), by creating the payment page, you will receive the redirect URL "redirect_url" within the response, which you will use to redirect your client to this payment page. Once you have redirected your client, the client browser will display the following page to the client.

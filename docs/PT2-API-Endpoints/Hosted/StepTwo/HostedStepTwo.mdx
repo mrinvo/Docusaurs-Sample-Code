@@ -1,0 +1,105 @@
+---
+sidebar_position: 1
+---
+import DocCardList from '@theme/DocCardList';
+import { APIsIntro } from '@site/src/Reusables/APIsIntro.mdx';
+import urls from '@site/src/URLs/urls.json';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+# Step 2 - Configure the integration method
+
+<!-- src/Reuesables/APIsIntro.mdx -->
+
+
+<APIsIntro title="" content="" />
+
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/S7plRZoLmp4" title="INTEGRATIONS: Steps [1,2] - Hosted Payment Page APIs | Setup and configure the integration method" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!-- Hosted Intro -->
+
+<br /> <br />
+
+After you have learned the setup and installation steps for the Hosted Payment Page APIs, as clarified in the last step [Step 1 - Setup and activate the integration method](../), you can now manage your integration configuration to start using our PT2 API endpoints in any further steps. Kindly check the below steps that will walk you through the configuration you need:
+
+![configurations](@site/src/images/configurations.png)
+
+## Configuring the PayTabs API Endpoints
+
+1. The first thing you will need to provide the proper endpoint URL to your request, as shown below:
+
+    ```curl
+    curl --location --request POST 'https://secure.PayTabs.com/payment/request' \
+    ```
+    :::caution
+    <br/>
+    {urls.region}
+    Please note that not using the proper endpoint URI \{\{domain\}\} will lead to authentication issues within your responses. To find the your proper domain you can read our [What Is My (Region)/(endpoint URL)? solution article]({urls.region}).
+
+    | **<span style={{color: 'var(--ifm-color-request-post)'}}>POST</span>** | \{\{domain\}\}payment/request |
+    |----------|-------------------------------|
+    <Tabs>
+    <TabItem value="UAE" label="UAE" default>
+        ```
+        https://secure.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https:<nolink/>//secure.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="KSA" label="KSA">
+        ```
+        https://secure.paytabs.sa/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure.paytabs.sa/</b>payment/request
+    </TabItem>
+        <TabItem value="Egypt" label="Egypt" >
+        ```
+        https://secure-egypt.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure-egypt.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="Oman" label="Oman" >
+        ```
+        https://secure-oman.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure-oman.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="Jordan" label="Jordan" >
+        ```
+        https://secure-jordan.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure-jordan.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="Global" label="Global" >
+    ```
+    https://secure-global.paytabs.com/{{endpoint_uri}}
+    ```
+    For example: <b>https<nolink/>://secure-global.paytabs.com/</b>payment/request
+    </TabItem>
+    </Tabs>
+    :::
+
+<br/>
+2. Then you will need to provide your API server key.
+    ```curl
+    
+    curl --location --request POST 'https://secure.PayTabs.com/payment/request' \--header 'authorization: SJ******MD-J2******L6-99******DZ' \
+
+    ```   
+    :::info
+    To know how to find your API server key we recommend you to check our [How to get my Authentication/integration/API Keys?]({urls.findkeys}) solution article
+    ::: 
+
+3.  Finally, you will need to provide your profile_id within the required parameters that should be sent in the request payload.
+    ```json
+    {profile_id => 2342,}
+    ```  
+    :::info
+    To know how to find your profile_id we recommend you check our [How to get your account information from PT2 dashboard?]({urls.findmid}) solution article 
+    ::: 
+
+    :::info
+    In order to understand the types of PayTabs merchant profiles, we highly reccomend you to check our  [What is test profile vs live profile?]({urls.testvslive}) solution article
+    ::: 
+
+
+Here you are, done with configuring the PayTabs API endpoints. And now you can go on the ground with your business using the preferred payment methods.    

@@ -1,0 +1,22 @@
+<!-- src/Reuesables/HostedRegionEndpointIntro.mdx -->
+import urls from '@site/src/URLs/urls.json';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+export const RegionEndpoint = ({ title, content }) => (
+
+ :::caution
+    <br/>
+    Please note that not using the proper endpoint URI \{\{domain\}\} will lead to authentication issues within your responses. To find the your proper domain you can read our [What Is My (Region)/(endpoint URL)? solution article]({urls.region}).
+
+    | **<span style={{color: 'var(--ifm-color-request-post)'}}>POST</span>** | \{\{domain\}\}payment/request |
+    |----------|-------------------------------|
+
+    :::
+  
+
+);
+
+<RegionEndpoint title="RegionEndpoint" content="This is a reusable introduction for all apis!" />
+
